@@ -5,8 +5,13 @@
         <img src="@/assets/images/Logo_ML.png" alt="Mercado Livre" />
       </router-link>
       <form class="search-bar__form">
-        <input type="text" class="search-bar__input" placeholder="Nunca deixe de buscar" />
-        <button class="search-bar__button">
+        <input
+          type="text"
+          class="search-bar__input"
+          placeholder="Nunca deixe de buscar"
+          v-model="query"
+        />
+        <button class="search-bar__button" @click.prevent="handleSearch">
           <img src="@/assets/images/ic_Search.png" alt="Search" />
         </button>
       </form>
@@ -16,7 +21,15 @@
 
 <script>
 export default {
-  name: "search-bar"
+  name: "search-bar",
+  data: () => ({
+    query: ""
+  }),
+  methods: {
+    handleSearch() {
+      this.$store.commit("SET_SEARCH_TERM", this.query);
+    }
+  }
 };
 </script>
 

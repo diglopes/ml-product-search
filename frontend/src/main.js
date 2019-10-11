@@ -17,6 +17,13 @@ Vue.filter("setPriceToBRL", value => {
   }
 });
 
+Vue.filter("translateCondition", value => {
+  switch (value) {
+    case "new":
+      return "Novo";
+  }
+});
+
 import "@/assets/global.css";
 import "@/assets/transitions.css";
 
