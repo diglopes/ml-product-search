@@ -25,8 +25,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+li + li {
+  border-top: 2px solid #eee;
+}
+
 .result-item {
-  border-bottom: 2px solid #eee;
   padding: 16px;
   display: flex;
   transition: background 300ms ease-in-out, border 300ms ease-in-out;

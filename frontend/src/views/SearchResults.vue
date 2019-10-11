@@ -60,7 +60,7 @@ export default {
 .results-container {
   background: #fff;
   border-radius: 4px;
-  height: 100vh;
   padding: 16px;
+  margin-bottom: 32px;
 }
 </style>
