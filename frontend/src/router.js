@@ -3,8 +3,16 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
+import SearchResults from "@/views/SearchResults";
+
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: []
+  routes: [
+    {
+      path: "/",
+      name: "search-results",
+      component: SearchResults
+    }
+  ]
 });
