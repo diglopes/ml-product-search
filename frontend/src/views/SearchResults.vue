@@ -7,12 +7,23 @@
       <span class="categories__item">IPod Touch</span>
       <span class="categories__item">32 GB</span>
     </div>
+
+    <ul class="results-container">
+      <SearchResultItem />
+      <SearchResultItem />
+      <SearchResultItem />
+    </ul>
   </section>
 </template>
 
 <script>
+import SearchResultItem from "@/components/SearchResultItem";
+
 export default {
-  name: "search-results"
+  name: "search-results",
+  components: {
+    SearchResultItem
+  }
 };
 </script>
 
@@ -44,5 +55,12 @@ export default {
   .categories {
     font-size: 12px;
   }
+}
+
+.results-container {
+  background: #fff;
+  border-radius: 4px;
+  height: 100vh;
+  padding: 16px;
 }
 </style>
