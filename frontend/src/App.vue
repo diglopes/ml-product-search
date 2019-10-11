@@ -1,17 +1,22 @@
 <template>
   <div id="app">
     <SearchBar />
-    <router-view />
+    <main class="container">
+      <Breadcrumbs />
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
 import SearchBar from "@/components/SearchBar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default {
   name: "app",
   components: {
-    SearchBar
+    SearchBar,
+    Breadcrumbs
   }
 };
 </script>
