@@ -18,6 +18,7 @@ Vue.filter("setPriceToBRL", value => {
 });
 
 import "@/assets/global.css";
+import "@/assets/transitions.css";
 
 new Vue({
   router,

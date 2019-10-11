@@ -3,7 +3,9 @@
     <SearchBar />
     <main class="container">
       <Breadcrumbs />
-      <router-view />
+      <transition name="fade" appear mode="out-in">
+        <router-view />
+      </transition>
     </main>
   </div>
 </template>
