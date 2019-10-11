@@ -1,30 +1,48 @@
 <template>
   <div class="categories">
-    <span class="categories__item">Eletrônica, Audio e Vídeo</span>
-    <span class="categories__item">IPod</span>
-    <span class="categories__item">Reprodutores</span>
-    <span class="categories__item">IPod Touch</span>
-    <span class="categories__item">32 GB</span>
+    <span
+      v-for="(categorie, index) in categories"
+      :key="index"
+      class="categories__item"
+      @click="changeSearchTerm(categorie)"
+    >{{categorie}}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "breadcrumbs"
+  name: "breadcrumbs",
+  computed: {
+    categories() {
+      return this.$store.state.categories;
+    }
+  },
+  methods: {
+    changeSearchTerm(term) {
+      this.$store.commit("SET_SEARCH_TERM", term);
+      this.$store.commit("SET_QUERY", term);
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .categories {
-  color: #777;
+  color: var(--clr-grey);
   margin: 16px 0;
   font-size: 14px;
 
   &__item {
     margin-right: 8px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--clr-action);
+    }
 
     & + span::before {
       content: ">";
+      color: var(--clr-grey);
       font-weight: normal;
       font-size: 16px;
       align-items: center;

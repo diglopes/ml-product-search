@@ -2,17 +2,21 @@
   <li>
     <router-link to="/search/123" class="result-item">
       <div class="result-item__image">
-        <img src="https://http2.mlstatic.com/D_NQ_NP_890321-MLA31521996387_072019-O.webp" alt />
+        <img :src="item.picture" alt />
       </div>
+
       <div class="result-item__info">
         <div class="result-item__price-wrapper">
-          <span class="result-item__price">{{2000 | setPriceToBRL}}</span>
-          <img class="result-item__shipping" src="@/assets/images/ic_shipping@2x.png" alt />
+          <span class="result-item__price">{{item.price.amount | setPriceToBRL}}</span>
+          <img
+            v-if="item.free_shipping"
+            class="result-item__shipping"
+            src="@/assets/images/ic_shipping@2x.png"
+            alt
+          />
         </div>
-        <span class="result-item__city">Cubatão</span>
-        <h1
-          class="result-item__description"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+        <span class="result-item__city">{{item.condition | translateCondition}}</span>
+        <h1 class="result-item__description">{{item.title}}</h1>
       </div>
     </router-link>
   </li>
@@ -20,7 +24,8 @@
 
 <script>
 export default {
-  name: "search-result-item"
+  name: "search-result-item",
+  props: ["item"]
 };
 </script>
 
@@ -39,10 +44,11 @@ li + li {
   }
 
   &__image {
-    max-width: 180px;
+    width: 180px;
     height: 180px;
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 4px;
     background: #fff;
   }
@@ -50,7 +56,7 @@ li + li {
   &__info {
     margin-left: 16px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: minmax(400px, 600px) 1fr;
     grid-template-rows: auto 1fr;
   }
 
@@ -75,6 +81,7 @@ li + li {
     font-weight: bold;
     align-self: center;
     justify-self: center;
+    margin-left: auto;
   }
 
   &__description {
