@@ -28,7 +28,9 @@ export default {
   methods: {
     async fetchItems() {
       const { data } = await api.get(`/products?q=${this.searchTerm}`);
+
       this.$store.commit("SET_ITEMS_FOUND", data.items);
+      this.$store.commit("SET_CATEGORIES", data.categories);
     }
   },
   created() {

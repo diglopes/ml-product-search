@@ -6,7 +6,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     searchTerm: "iphone",
-    itemsFound: {}
+    itemsFound: {},
+    categories: [],
+    query: ""
   },
   mutations: {
     SET_SEARCH_TERM(state, payload) {
@@ -14,6 +16,12 @@ export default new Vuex.Store({
     },
     SET_ITEMS_FOUND(state, payload) {
       state.itemsFound = payload;
+    },
+    SET_CATEGORIES(state, payload) {
+      state.categories = payload;
+    },
+    SET_QUERY(state, payload) {
+      state.query = payload;
     }
   },
   actions: {}

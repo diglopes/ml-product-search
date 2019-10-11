@@ -22,9 +22,17 @@
 <script>
 export default {
   name: "search-bar",
-  data: () => ({
-    query: ""
-  }),
+  data: () => ({}),
+  computed: {
+    query: {
+      get() {
+        return this.$store.state.query;
+      },
+      set(value) {
+        this.$store.commit("SET_QUERY", value);
+      }
+    }
+  },
   methods: {
     handleSearch() {
       this.$store.commit("SET_SEARCH_TERM", this.query);
