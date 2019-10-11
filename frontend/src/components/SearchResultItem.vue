@@ -1,6 +1,6 @@
 <template>
   <li>
-    <router-link to="/search/123" class="result-item">
+    <router-link :to="{name: 'product-description', params: {id: item.id}}" class="result-item">
       <div class="result-item__image">
         <img :src="item.picture" alt />
       </div>
@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 li + li {
-  border-top: 2px solid #eee;
+  border-top: 2px solid var(--clr-light);
 }
 
 .result-item {
@@ -40,7 +40,7 @@ li + li {
   transition: background 300ms ease-in-out, border 300ms ease-in-out;
 
   &:hover {
-    background: #eee;
+    background: var(--clr-light);
   }
 
   &__image {

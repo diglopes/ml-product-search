@@ -23,7 +23,7 @@ export default {
   left: 0;
   background: rgba($color: #000000, $alpha: 0.5);
   width: 100%;
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
   height: 100%;
 
   &__wrapper {

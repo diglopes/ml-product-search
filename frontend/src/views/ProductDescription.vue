@@ -1,28 +1,47 @@
 <template>
   <section class="view-wrapper product-description">
     <div class="product-description__image">
-      <img src="https://http2.mlstatic.com/D_NQ_NP_890321-MLA31521996387_072019-O.webp" alt="TV" />
+      <img :src="item.picture" :alt="item.title" />
     </div>
 
     <div class="product-description__details">
-      <span class="product-description__details-sails">Novo - 234 vendidos</span>
-      <h1 class="product-description__details-title">TV blablabla 42 polegadas</h1>
-      <h2 class="product-description__details-price">{{2000 | setPriceToBRL}}</h2>
+      <span
+        class="product-description__details-sails"
+      >{{item.condition | translateCondition}} - {{item.sold_quantity}} vendidos</span>
+      <h1 class="product-description__details-title">{{item.title}}</h1>
+      <h2 class="product-description__details-price">{{item.price.amount | setPriceToBRL}}</h2>
       <button class="btn">Comprar</button>
     </div>
 
     <article class="product-description__info">
       <h3 class="product-description__info-title">Descrição do produto</h3>
-      <p
-        class="product-description__info-text"
-      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quis voluptate consequuntur! Ratione exercitationem illum atque totam possimus voluptatum veniam eligendi, commodi aspernatur vero, ullam expedita doloribus eos est laborum. Laborum illum minus veniam? Magnam, quae. Consequuntur pariatur deserunt ipsum ex, voluptatem debitis illum qui, suscipit dolorem maxime deleniti ullam.</p>
+      <p class="product-description__info-text">{{item.description}}</p>
     </article>
   </section>
 </template>
 
 <script>
+import api from "@/services/api.js";
+
 export default {
-  name: "product-description"
+  name: "product-description",
+  data: () => ({
+    item: null
+  }),
+  methods: {
+    async fetchItems() {
+      this.$store.commit("SET_LOADING", true);
+      const { id } = this.$route.params;
+
+      const { data } = await api.get(`/product/${id}`);
+      this.item = data;
+
+      this.$store.commit("SET_LOADING", false);
+    }
+  },
+  created() {
+    this.fetchItems();
+  }
 };
 </script>
 
