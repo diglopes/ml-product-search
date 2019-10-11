@@ -1,10 +1,17 @@
-const { searchItems } = require("../services/items");
+const { searchItems, searchItemByid } = require("../services/items");
 
-const searchProduct = async (req, res) => {
+const search = async (req, res) => {
   const { q } = req.query;
   const result = await searchItems(q);
 
   res.json(result);
 };
 
-module.exports = { searchProduct };
+const searchById = async (req, res) => {
+  const { id } = req.params;
+  const result = await searchItemByid(id);
+
+  res.json(result);
+};
+
+module.exports = { search, searchById };
