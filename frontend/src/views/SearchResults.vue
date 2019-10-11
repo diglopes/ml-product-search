@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <ul class="results-container">
+  <section class="view-wrapper">
+    <ul>
       <SearchResultItem />
       <SearchResultItem />
       <SearchResultItem />
@@ -20,10 +20,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.results-container {
-  background: #fff;
-  border-radius: 4px;
-  padding: 16px;
-  margin-bottom: 32px;
-}
 </style>

@@ -22,6 +22,7 @@ a {
 body {
   font-family: Helvetica, Arial, sans-serif;
   background: var(--clr-light);
+  color: var(--clr-black);
 }
 
 ul {
@@ -45,6 +46,27 @@ textarea {
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
+}
+
+.view-wrapper {
+  background: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+.btn {
+  border: none;
+  background: var(--clr-action);
+  color: #fff;
+  font-size: 18px;
+  padding: 8px 64px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1b6de8;
 }
 
 @media screen and (max-width: 992px) {
