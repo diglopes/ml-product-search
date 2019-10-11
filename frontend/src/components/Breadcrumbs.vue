@@ -21,6 +21,8 @@ export default {
     changeSearchTerm(term) {
       this.$store.commit("SET_SEARCH_TERM", term);
       this.$store.commit("SET_QUERY", term);
+
+      this.$router.push("/");
     }
   }
 };
