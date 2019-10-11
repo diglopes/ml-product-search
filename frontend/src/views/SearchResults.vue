@@ -27,10 +27,17 @@ export default {
   },
   methods: {
     async fetchItems() {
+      this.$store.commit("SET_LOADING", true);
       const { data } = await api.get(`/products?q=${this.searchTerm}`);
 
       this.$store.commit("SET_ITEMS_FOUND", data.items);
       this.$store.commit("SET_CATEGORIES", data.categories);
+      this.$store.commit("SET_LOADING", false);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
   },
   created() {

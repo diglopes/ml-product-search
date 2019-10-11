@@ -8,7 +8,8 @@ export default new Vuex.Store({
     searchTerm: "iphone",
     itemsFound: {},
     categories: [],
-    query: ""
+    query: "iphone",
+    loading: true
   },
   mutations: {
     SET_SEARCH_TERM(state, payload) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     SET_QUERY(state, payload) {
       state.query = payload;
+    },
+    SET_LOADING(state, payload) {
+      state.loading = payload;
     }
   },
   actions: {}
