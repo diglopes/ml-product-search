@@ -1,6 +1,6 @@
 <template>
   <li>
-    <router-link to="/" class="result-item">
+    <router-link to="/search/123" class="result-item">
       <div class="result-item__image">
         <img src="https://http2.mlstatic.com/D_NQ_NP_890321-MLA31521996387_072019-O.webp" alt />
       </div>

@@ -1,9 +1,9 @@
 <template>
   <header class="search-bar">
     <div class="search-bar__wrapper container">
-      <div class="search-bar__logo">
+      <router-link to="/" class="search-bar__logo">
         <img src="@/assets/images/Logo_ML.png" alt="Mercado Livre" />
-      </div>
+      </router-link>
       <form class="search-bar__form">
         <input type="text" class="search-bar__input" placeholder="Nunca deixe de buscar" />
         <button class="search-bar__button">

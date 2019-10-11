@@ -19,6 +19,10 @@ a {
   color: var(--clr-black);
 }
 
+a:visited {
+  outline: 1px dotted var(--clr-action);
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   background: var(--clr-light);
