@@ -1,5 +1,5 @@
 <template>
-  <section class="view-wrapper product-description">
+  <section class="view-wrapper product-description" v-if="item">
     <div class="product-description__image">
       <img :src="item.picture" :alt="item.title" />
     </div>
@@ -35,6 +35,8 @@ export default {
 
       const { data } = await api.get(`/product/${id}`);
       this.item = data;
+
+      document.title = `Mercado Livre | ${data.title}`;
 
       this.$store.commit("SET_LOADING", false);
     }

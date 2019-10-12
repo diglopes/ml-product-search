@@ -9,7 +9,7 @@
           type="text"
           class="search-bar__input"
           placeholder="Nunca deixe de buscar"
-          v-model="query"
+          v-model="searchTerm"
         />
         <button class="search-bar__button" @click.prevent="handleSearch">
           <img src="@/assets/images/ic_Search.png" alt="Search" />
@@ -22,20 +22,29 @@
 <script>
 export default {
   name: "search-bar",
-  data: () => ({}),
   computed: {
-    query: {
+    searchTerm: {
       get() {
-        return this.$store.state.query;
+        return this.$store.state.searchTerm;
       },
       set(value) {
-        this.$store.commit("SET_QUERY", value);
+        this.$store.commit("SET_SEARCH_TERM", value);
       }
     }
   },
   methods: {
     handleSearch() {
-      this.$store.commit("SET_SEARCH_TERM", this.query);
+      const regex = /,| |\.|!|\?/gim;
+      const seachTermWithoutSpaces = this.searchTerm.replace(regex, "+");
+
+      if (seachTermWithoutSpaces !== this.$route.query.search) {
+        this.$router.push({
+          name: "search-results",
+          query: { search: seachTermWithoutSpaces }
+        });
+      } else {
+        this.searchTerm = "";
+      }
     }
   }
 };
