@@ -90,8 +90,5 @@ li + li {
     font-weight: normal;
     color: var(--clr-grey);
   }
-
-  &__quantity {
-  }
 }
 </style>

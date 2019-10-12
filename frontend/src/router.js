@@ -9,6 +9,16 @@ import ProductDescription from "@/views/ProductDescription";
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
+  afterEach: (to, from, next) => {
+    document.title = to.meta.title;
+    next();
+  },
+  scrollBehavior: () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  },
   routes: [
     {
       path: "/",

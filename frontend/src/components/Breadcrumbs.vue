@@ -10,19 +10,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "breadcrumbs",
   computed: {
-    categories() {
-      return this.$store.state.categories;
-    }
+    ...mapState(["searchTerm", "lastSearch", "categories"])
   },
   methods: {
-    changeSearchTerm(term) {
-      this.$store.commit("SET_SEARCH_TERM", term);
-      this.$store.commit("SET_QUERY", term);
+    changeSearchTerm(categorie) {
+      const regex = /,| |\.|!|\?/gim;
+      const categorieWithoutSpaces = categorie.replace(regex, "+");
 
-      this.$router.push("/");
+      if (categorieWithoutSpaces !== this.$route.query.search) {
+        this.$router.push({
+          name: "search-results",
+          query: { search: categorieWithoutSpaces }
+        });
+      }
     }
   }
 };

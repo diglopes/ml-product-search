@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import api from "@/services/api.js";
-
 import SearchResultItem from "@/components/SearchResultItem";
 import { mapState } from "vuex";
 
@@ -18,26 +16,28 @@ export default {
     SearchResultItem
   },
   computed: {
-    ...mapState(["searchTerm", "itemsFound"])
+    ...mapState(["itemsFound", "categories"]),
+    search() {
+      return this.$route.query.search;
+    }
   },
   watch: {
-    searchTerm() {
-      this.fetchItems(this.searchTerm);
+    "$route.query.search"() {
+      this.$store.dispatch("FEATCH_DATA", this.$route.query.search);
     }
   },
   methods: {
     async fetchItems() {
-      this.$store.commit("SET_LOADING", true);
-      const { data } = await api.get(`/products?q=${this.searchTerm}`);
+      let term = this.search;
 
-      this.$store.commit("SET_ITEMS_FOUND", data.items);
-      this.$store.commit("SET_CATEGORIES", data.categories);
-      this.$store.commit("SET_LOADING", false);
+      if (!term) {
+        term = this.query || "computadores";
+      }
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      const regex = /\+/g;
+      const termWithSpace = term.replace(regex, " ");
+
+      this.$store.dispatch("FEATCH_DATA", termWithSpace);
     }
   },
   created() {
