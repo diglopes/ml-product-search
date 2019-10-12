@@ -11,7 +11,7 @@
           placeholder="Nunca deixe de buscar"
           v-model="searchTerm"
         />
-        <button class="search-bar__button" @click.prevent="handleSearch">
+        <button class="search-bar__button" @click.prevent="handleSearch(searchTerm)">
           <img src="@/assets/images/ic_Search.png" alt="Search" />
         </button>
       </form>
@@ -20,8 +20,11 @@
 </template>
 
 <script>
+import pushNewQuery from "@/mixins/pushNewQuery.js";
+
 export default {
   name: "search-bar",
+  mixins: [pushNewQuery],
   computed: {
     searchTerm: {
       get() {
@@ -29,21 +32,6 @@ export default {
       },
       set(value) {
         this.$store.commit("SET_SEARCH_TERM", value);
-      }
-    }
-  },
-  methods: {
-    handleSearch() {
-      const regex = /,| |\.|!|\?/gim;
-      const seachTermWithoutSpaces = this.searchTerm.replace(regex, "+");
-
-      if (seachTermWithoutSpaces !== this.$route.query.search) {
-        this.$router.push({
-          name: "search-results",
-          query: { search: seachTermWithoutSpaces }
-        });
-      } else {
-        this.searchTerm = "";
       }
     }
   }
