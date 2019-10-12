@@ -1,16 +1,11 @@
 const api = require("./api");
-const author = {
-  name: "Diego",
-  lastname: "Lopes"
-};
 
 const searchItems = async (query, limit = 8) => {
   const searchItemsUrl = `/sites/MLB/search?q=${query}&limit=${limit}`;
 
   try {
     const { data } = await api.get(searchItemsUrl);
-
-    return filterData(data, query);
+    return data;
   } catch (error) {
     return { error: "Couldn't make the search" };
   }
@@ -18,28 +13,13 @@ const searchItems = async (query, limit = 8) => {
 
 const searchItemByid = async itemID => {
   const searchByIdUrl = `/items/${itemID}`;
-  const promises = [api.get(searchByIdUrl), searchDescription(itemID)];
-  const [itemByID, description] = await Promise.all(promises).catch(error => {
-    return { error: "Couldn't make the search" };
-  });
+  try {
+    const { data } = await api.get(searchByIdUrl);
 
-  const item = {
-    author,
-    id: itemByID.data.id,
-    title: itemByID.data.title,
-    price: {
-      currency: itemByID.data.currency_id,
-      amount: itemByID.data.price,
-      decimals: 2
-    },
-    picture: itemByID.data.pictures[0].url,
-    condition: itemByID.data.condition,
-    free_shipping: itemByID.data.shipping.free_shipping,
-    sold_quantity: itemByID.data.sold_quantity,
-    description
-  };
-
-  return item;
+    return data;
+  } catch (error) {
+    return error;
+  }
 };
 
 const searchCategories = async data => {
@@ -61,31 +41,9 @@ const searchDescription = async itemID => {
   return data.plain_text;
 };
 
-const filterData = async data => {
-  const newData = {};
-
-  const categories = await searchCategories(data);
-
-  newData.items = data.results.map(item => {
-    const filteredItem = {
-      author,
-      id: item.id,
-      title: item.title,
-      categories,
-      price: {
-        currency: item.currency_id,
-        amount: item.price,
-        decimals: 2
-      },
-      picture: item.thumbnail,
-      condition: item.condition,
-      free_shipping: item.shipping.free_shipping
-    };
-
-    return filteredItem;
-  });
-
-  return newData;
+module.exports = {
+  searchItems,
+  searchItemByid,
+  searchDescription,
+  searchCategories
 };
-
-module.exports = { searchItems, searchItemByid };
