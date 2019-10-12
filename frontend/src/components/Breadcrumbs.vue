@@ -4,30 +4,20 @@
       v-for="(categorie, index) in categories"
       :key="index"
       class="categories__item"
-      @click="changeSearchTerm(categorie)"
+      @click="handleSearch(categorie)"
     >{{categorie}}</span>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import pushNewQuery from "@/mixins/pushNewQuery.js";
 
 export default {
   name: "breadcrumbs",
+  mixins: [pushNewQuery],
   computed: {
-    ...mapState(["searchTerm", "lastSearch", "categories"])
-  },
-  methods: {
-    changeSearchTerm(categorie) {
-      const regex = /,| |\.|!|\?/gim;
-      const categorieWithoutSpaces = categorie.replace(regex, "+");
-
-      if (categorieWithoutSpaces !== this.$route.query.search) {
-        this.$router.push({
-          name: "search-results",
-          query: { search: categorieWithoutSpaces }
-        });
-      }
+    categories() {
+      return this.$store.state.categories;
     }
   }
 };

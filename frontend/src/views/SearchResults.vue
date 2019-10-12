@@ -8,7 +8,6 @@
 
 <script>
 import SearchResultItem from "@/components/SearchResultItem";
-import { mapState } from "vuex";
 
 export default {
   name: "search-results",
@@ -16,8 +15,10 @@ export default {
     SearchResultItem
   },
   computed: {
-    ...mapState(["itemsFound", "categories"]),
-    search() {
+    itemsFound() {
+      return this.$store.state.itemsFound;
+    },
+    searchQuery() {
       return this.$route.query.search;
     }
   },
@@ -28,16 +29,13 @@ export default {
   },
   methods: {
     async fetchItems() {
-      let term = this.search;
+      let term = this.searchQuery;
 
       if (!term) {
-        term = this.query || "computadores";
+        term = "Categorias";
       }
 
-      const regex = /\+/g;
-      const termWithSpace = term.replace(regex, " ");
-
-      this.$store.dispatch("FEATCH_DATA", termWithSpace);
+      this.$store.dispatch("FEATCH_DATA", term);
     }
   },
   created() {

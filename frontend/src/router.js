@@ -21,12 +21,16 @@ export default new Router({
   },
   routes: [
     {
+      path: "*",
+      redirect: { name: "search-results", query: { search: "categorias" } }
+    },
+    {
       path: "/",
       name: "search-results",
       component: SearchResults
     },
     {
-      path: "/search/:id",
+      path: "/product/:id",
       name: "product-description",
       component: ProductDescription
     }
