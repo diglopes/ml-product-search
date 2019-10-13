@@ -12,10 +12,10 @@ export default {
         this.searchTerm = "";
       }
     },
-    replaceSpaces(string) {
+    replaceSpaces(sentence) {
       const regex = /,| |\.|!|\?/gim;
-      const stringWithoutSpaces = string.replace(regex, "+");
-      return stringWithoutSpaces;
+      const sentenceWithoutSpaces = sentence.replace(regex, "+");
+      return sentenceWithoutSpaces;
     }
   }
 };

@@ -1,39 +1,15 @@
-# frontend
+# ML - Product Search | Frontend
 
-## Project setup
-```
-yarn install
-```
+This folder contains all the files related to the frontend
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+### Packages used to build the frontend application:
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+- Vue.js (to build the user interface)
+- Vue Router (for routes management)
+- Vuex (for state management)
+- axios (for HTTP requests)
 
-### Run your tests
-```
-yarn run test
-```
+### Styling
 
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your end-to-end tests
-```
-yarn run test:e2e
-```
-
-### Run your unit tests
-```
-yarn run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Sass (pre-processor)
+- BEM (CSS organization methodology)
