@@ -22,9 +22,8 @@ const searchItemByid = async itemID => {
   }
 };
 
-const searchCategories = async data => {
-  const { category_id } = data.results[0];
-  const categoriesUrl = `/categories/${category_id}`;
+const searchCategories = async categoryID => {
+  const categoriesUrl = `/categories/${categoryID}`;
   try {
     const { data: categoriesData } = await api.get(categoriesUrl);
 

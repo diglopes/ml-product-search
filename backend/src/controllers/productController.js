@@ -15,7 +15,7 @@ const search = async (req, res) => {
 
   try {
     const items = await searchItems(query);
-    const sumirizedItems = await sumirizeItems.querySearch(items);
+    const sumirizedItems = await sumirizeItems.many(items);
 
     return res.json(sumirizedItems);
   } catch (error) {
@@ -28,7 +28,7 @@ const searchById = async (req, res) => {
 
   try {
     const item = await searchItemByid(id);
-    const sumirizedItem = await sumirizeItems.idSearch(item);
+    const sumirizedItem = await sumirizeItems.single(item);
 
     return res.json(sumirizedItem);
   } catch (error) {

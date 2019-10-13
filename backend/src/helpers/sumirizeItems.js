@@ -6,8 +6,9 @@ const author = {
 };
 
 module.exports = {
-  querySearch: async data => {
-    const categories = await searchCategories(data);
+  many: async data => {
+    const { category_id } = data.results[0];
+    const categories = await searchCategories(category_id);
 
     const items = data.results.map(item => {
       const filteredItem = {
@@ -28,7 +29,7 @@ module.exports = {
 
     return { author, categories, items };
   },
-  idSearch: async data => {
+  single: async data => {
     const description = await searchDescription(data.id);
 
     const item = {
