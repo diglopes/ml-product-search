@@ -10,7 +10,6 @@ describe("Sumirize Items", () => {
 
   it("should sumirize the single item query response", async () => {
     const response = await sumirizeItems.single(mocks.singleItem);
-    console.log(response);
 
     expect(response).toHaveProperty(...mocks.itemKeys);
   });
